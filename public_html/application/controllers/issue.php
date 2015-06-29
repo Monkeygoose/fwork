@@ -24,7 +24,7 @@ class issue extends MY_Controller {
 
     }
 
-    public function create_issue() { 	
+    public function create_issue() {
 
         $this->load->library('form_validation');
 
@@ -36,12 +36,12 @@ class issue extends MY_Controller {
             $this->load->view('admin/magazine/create_issue');
 
         } else {
-            
+
             $this->issue_model->set_issue();
-            
-			$result = "Issue Created";
+
+						$result = "Issue Created";
             $this->session->set_flashdata('info',$result);
-			redirect('admin');  
+						redirect('admin');
 
         }
 
@@ -54,6 +54,6 @@ class issue extends MY_Controller {
 
 			redirect('admin');
 
-    }	
+    }
 
 }
