@@ -1,3 +1,5 @@
+<div class="loginbox">
+
 <?php echo form_open('signin/login') ; ?>
 
 <?php if (validation_errors()) : ?>
@@ -25,10 +27,10 @@ please try again.</p>
 <td>
 
 <?php echo form_input(array(
-		'name' => 'email', 
+		'name' => 'email',
 		'id' => 'email',
 		'value' => set_value('email', ''),
-		'maxlength' => '100', 
+		'maxlength' => '100',
 		'size' => '50',
 		'style' => 'width:100%'
 	)
@@ -41,10 +43,10 @@ please try again.</p>
 <td>
 
 	<?php echo form_password(array(
-		'name' => 'password', 
-		'id' => 'password', 
-		'value' => set_value('password', ''), 
-		'maxlength' => '100', 
+		'name' => 'password',
+		'id' => 'password',
+		'value' => set_value('password', ''),
+		'maxlength' => '100',
 		'size' => '50',
 		'style' => 'width:100%'
 		)
@@ -56,6 +58,8 @@ please try again.</p>
 
 <?php echo form_submit('submit', 'Submit'); ?>
 
-or <?php echo anchor('signin', 'cancel'); ?>
+<p>or <?php echo anchor('signin', 'cancel'); ?></p>
 
 <?php echo form_close(); ?>
+
+</div>

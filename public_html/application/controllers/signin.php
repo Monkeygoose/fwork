@@ -8,6 +8,13 @@ class Signin extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->helper('security');
+
+		$this->headdata = array(
+			'title' => 'Login',
+			'keywords' => '',
+			'description' => '',
+			'info' => $this->session->flashdata('info')
+			);
 	}
 
 	public function index() {
@@ -22,18 +29,20 @@ class Signin extends CI_Controller {
 
 		} else {
 
+			$this->load->view('templates/head.php', $this->headdata);
+
 			$this->load->library('form_validation');
 
 			// Set validation rules for view filters
 			$this->form_validation->set_rules(
-				'email', 
+				'email',
 				'Email',
 				'required|valid_email|min_length[5]|max_length[125]'
 			);
 
 			$this->form_validation->set_rules(
 				'password',
-				'Password ', 
+				'Password ',
 				'required|min_length[5]|max_length[30]'
 			);
 
@@ -93,7 +102,7 @@ class Signin extends CI_Controller {
 	function logout() {
         $this->session->unset_userdata('logged_in');
         session_destroy();
-		redirect('signin');	
+		redirect('signin');
 	}
 
 	function loggedin() {
