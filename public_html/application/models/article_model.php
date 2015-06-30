@@ -1,8 +1,8 @@
 <?php
 class Article_model extends CI_Model {
 
-	public function __construct() {
-		$this->load->database();
+	function __construct() {
+		parent::__construct();
 	}
 
 	public function get_article($slug = FALSE) {
@@ -14,11 +14,12 @@ class Article_model extends CI_Model {
 			$this->db->order_by("issue", "asc");
 			$query = $this->db->get();
 
-			return $query->result_array();
+			return $this->db->get('articles');
 		}
 
 		$query = $this->db->get_where('articles', array('slug' => $slug));
-		return $query->row_array();
+		$result = $query->row_array();
+		return $result;
 
 	}
 

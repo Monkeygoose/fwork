@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class issue extends MY_Controller {
+class article extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -15,11 +15,11 @@ class issue extends MY_Controller {
 		redirect('article/view_articles');
 	}
 
-  public function view_articles(){
-      $data['query'] = $this->issue_model->get_issue();
+	public function view_articles(){
+	  $data['query'] = $this->article_model->get_article();
 
-      $this->load->view('admin/magazine/view_issues', $data);
-  }
+	  $this->load->view('admin/magazine/view_articles', $data);
+	}
 
 
 

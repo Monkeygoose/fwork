@@ -18,7 +18,7 @@ foreach ($query->result() as $row) :
 <tr>
 <td><?php echo $row->ID; ?></td>
 <td><?php echo $row->issue_num; ?></td>
-<td><?php echo $row->date; ?></td>
+<td><?php echo date('[ l ] jS F Y', strtotime($row->date)); ?></td>
 <td><?php echo $row->num_articles; ?></td>
 <td><?php echo anchor('issue/delete_issue/'.$row->ID, 'Delete'); ?></td>
 </tr>
