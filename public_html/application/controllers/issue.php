@@ -39,9 +39,11 @@ class issue extends MY_Controller {
 
             $this->issue_model->set_issue();
 
-						$result = "Issue Created";
+			$result = "Issue Created";
+
             $this->session->set_flashdata('info',$result);
-						redirect('admin');
+            
+			redirect('admin');
 
         }
 
