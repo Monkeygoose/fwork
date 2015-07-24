@@ -27,19 +27,11 @@
 
 				<a href="#" id="trigger" class="menu-trigger icon-fa" style="float: left;">&#xf013;</a>
 
-				<a title="Home" class="qactbtn icon-fa" data-loc="<?php echo base_url();?>index.php/admin/dashboard"><span> | </span>&#xf015;</a>
+				<a class="qactbtn icon-fa" data-loc="<?php echo base_url();?>index.php/admin/dashboard"><span> | </span>&#xf015;</a>
 
-				<a title="New Issue" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/create_issue"><span> | </span>&#xf055;</a>
+				<a class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/create_issue"><span> | </span>&#xf02d;</a>
 
-				<a title="View Issues" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/view_issues">&#xf02d;<span> | </span></a>
-
-				<a title="New Article" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/create_article">&#xf055;</a>
-
-				<a title="View Articles" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/view_articles">&#xf1ea;<span> | </span></a>
-
-				<a title="New Blog Post" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/create_post">&#xf055;</a>
-
-				<a title="View Blog Posts" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/view_posts">&#xf14b;<span> | </span></a>
+				<a class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/view_issues">&#xf06e;<span> | </span></a>
 
 				<p style="float: right;">[ <?php echo $user_name; ?> ]</p>
 
