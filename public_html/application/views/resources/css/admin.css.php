@@ -108,7 +108,7 @@ a{
 
 button, input, select {
 	width: 100%!important;
-	margin: 5px;
+	margin-bottom: 10px;
 	padding: 5px;
 	font-size: 16px;
 }

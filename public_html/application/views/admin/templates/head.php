@@ -12,7 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/menubar.css'); ?>" />
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/admin.css'); ?>" />
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/spinner.css'); ?>" />
-		<script src="<?php echo site_url('resources/js/modernizr.custom.js'); ?>"></script>	
+		<script src="<?php echo site_url('resources/js/modernizr.custom.js'); ?>"></script>
 		<script src="<?php echo site_url('resources/js/jquery.js'); ?>"></script>
 		<title>Control Panel</title>
 	

@@ -25,7 +25,10 @@ class admin extends MY_Controller {
 	public function index() {		
 		$this->load->view('admin/templates/head.php', $this->headdata);
 
-		$this->load->view('admin/templates/footer.php');	
+		$this->load->view('admin/templates/footer.php');
+
+        $this->load->view('admin/templates/wysiwyg');
+
 	}
 
 	public function dashboard(){
