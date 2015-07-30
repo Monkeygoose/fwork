@@ -54,6 +54,10 @@ class issue extends MY_Controller {
 
             $this->issue_model->delete_issue($id);
 
+            $result = "Issue Deleted";
+
+            $this->session->set_flashdata('info',$result);
+
 			redirect('admin');
 
     }

@@ -28,17 +28,18 @@ class article extends MY_Controller {
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('issue_num', 'Issue Number', 'required');
+        $this->form_validation->set_rules('issue', 'Issue Number', 'required');
 
 
 
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/create_article',$data);
+            $this->load->view('admin/templates/wysiwyg');
 
         } else {
 
-            $this->article_model->set_issue();
+            $this->article_model->set_article();
 
 			$result = "Article Created";
 
@@ -47,6 +48,18 @@ class article extends MY_Controller {
 			redirect('admin');
 
         }
+
+	}
+
+	public function delete_article($id = NULL){
+
+            $this->article_model->delete_article($id);
+
+            $result = "Article Deleted";
+
+            $this->session->set_flashdata('info',$result);
+
+			redirect('admin');
 
 	}
 

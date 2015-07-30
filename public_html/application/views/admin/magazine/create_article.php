@@ -6,7 +6,7 @@
 
 	<input type="text" name="author" placeholder="Author"><br />
 
-	<select name="category">
+	<select name="cat">
 		<option disabled selected>Category</option>
 		<option value="art">Art</option>
 		<option value="music">Music</option>
@@ -15,7 +15,7 @@
 
 	</select><br />
 
-	<select name="issue_num">
+	<select name="issue">
 		<option disabled selected>Issue</option>
 		<?php 
 		foreach ($query->result() as $row) : 
@@ -26,26 +26,10 @@
 		?>
 	</select><br />
 
-	<textarea class="tinymce"></textarea><br />
+	<textarea name="text" class="tinymce"></textarea><br />
 
 	<input type="submit" name="submit" value="Create Article" />
 
 </form>
 
-<script type="text/javascript">
-$(function(){
-	$("textarea.tinymce").tinymce({
-	// Location of TinyMCE script
-		script_url : "<?php echo base_url('assets/js/tinymce/tinymce.min.js');?>",
-
-		selector: "textarea",
-		theme: "modern",
-		plugins: [
-		     "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-		     "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-		     "save table contextmenu directionality emoticons template paste textcolor"
-		]
-
-	});
-});
-</script>
+<img src="<?php echo base_url('assets/img/logo.png');?>">

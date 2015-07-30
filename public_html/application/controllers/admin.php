@@ -27,13 +27,40 @@ class admin extends MY_Controller {
 
 		$this->load->view('admin/templates/footer.php');
 
-        $this->load->view('admin/templates/wysiwyg');
-
 	}
 
 	public function dashboard(){
 
 		$this->load->view('admin/home');
+
+	}
+
+	public function upload($issue = NULL){
+		
+		//may need to be absolute path (base_url())
+		$folder = "issue-".$issue."/";
+
+		// NEEDS SCRUTINY
+
+	// 	$allowed = array('png', 'jpg', 'gif','zip');
+
+	// 	if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
+
+	// 		$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+
+	// 		if(!in_array(strtolower($extension), $allowed)){
+	// 			echo '{"status":"error"}';
+	// 			exit;
+	// 		}
+
+	// 		if(move_uploaded_file($_FILES['upl']['tmp_name'], 'uploads/'.$folder.$_FILES['upl']['name'])){
+	// 			echo '{"status":"success"}';
+	// 			exit;
+	// 		}
+	// 	}
+
+	// 	echo '{"status":"error"}';
+	// 	exit;
 
 	}
 

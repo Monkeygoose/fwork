@@ -56,7 +56,7 @@ class Article_model extends CI_Model {
 		$data = array(
 			'title' => $this->input->post('title'),
 			'author' => $this->input->post('author'),
-			'date' => $this->input->post('date'),
+			'date' => date('Y-m-d'),
 			'slug' => $slug,
 			'issue' => $this->input->post('issue'),
 			'cat' => $this->input->post('cat'),
@@ -84,9 +84,9 @@ class Article_model extends CI_Model {
 
 	}
 
-	public function delete_article($slug = FALSE){
+	public function delete_article($id = FALSE){
 
-		$this->db->where('slug', $slug);
+		$this->db->where('id', $id);
 		$this->db->delete('articles');
 
 	}
