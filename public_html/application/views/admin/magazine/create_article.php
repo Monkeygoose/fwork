@@ -2,34 +2,40 @@
 
 <?php echo form_open('article/create_article'); ?>
 
-	<input type="text" name="title" placeholder="Title"><br />
+	<div class="formitems">
 
-	<input type="text" name="author" placeholder="Author"><br />
+		<input type="text" name="title" placeholder="Title"><br />
 
-	<select name="cat">
-		<option disabled selected>Category</option>
-		<option value="art">Art</option>
-		<option value="music">Music</option>
-		<option value="poetry">Poetry</option>
-		<option value="design">Design</option>
+		<input type="text" name="author" placeholder="Author"><br />
 
-	</select><br />
+		<select name="cat">
+			<option disabled selected>Category</option>
+			<option value="art">Art</option>
+			<option value="music">Music</option>
+			<option value="poetry">Poetry</option>
+			<option value="design">Design</option>
 
-	<select name="issue">
-		<option disabled selected>Issue</option>
-		<?php 
-		foreach ($query->result() as $row) : 
-		?>
-			<option value="<?php echo $row->issue_num;?>"><?php echo $row->issue_num; ?></option>
-		<?php 
-		endforeach; 
-		?>
-	</select><br />
+		</select><br />
+
+		<select name="issue">
+			<option disabled selected>Issue</option>
+			<?php 
+			foreach ($query->result() as $row) : 
+			?>
+				<option value="<?php echo $row->issue_num;?>"><?php echo $row->issue_num; ?></option>
+			<?php 
+			endforeach; 
+			?>
+		</select><br />
+
+	</div>
 
 	<textarea name="text" class="tinymce"></textarea><br />
 
-	<input type="submit" name="submit" value="Create Article" />
+	<div class="formitems">
+
+		<input type="submit" name="submit" value="Create Article" />
+
+	</div>
 
 </form>
-
-<img src="<?php echo base_url('assets/img/logo.png');?>">

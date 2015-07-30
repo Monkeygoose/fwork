@@ -106,7 +106,7 @@ a{
 	transform: rotate(90deg);
 }
 
-button, input, select {
+.formitems button, .formitems input, .formitems select {
 	width: 100%!important;
 	margin-bottom: 10px;
 	padding: 5px;
