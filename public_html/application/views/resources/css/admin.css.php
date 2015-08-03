@@ -112,3 +112,32 @@ a{
 	padding: 5px;
 	font-size: 16px;
 }
+
+.formitems p {
+	font-size: 16px;
+}
+
+/* LOGIN BOX STUFF NEEDS SEPARATING OR REFACTORING */
+
+.loginbox {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+td {
+  padding: 10px;
+}
+
+td input {
+  width: 90%!important;
+}
+
+.loginbox input {
+  margin: 0px!important;
+}
+
+.loginbox p {
+  text-align: center;
+  margin: 0;
+}

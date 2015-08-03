@@ -20,46 +20,48 @@
 please try again.</p>
 
 <?php endif; ?>
+<div class="formitems">
+	<table border="0" >
+		<tr>
+		<td>User Email</td>
+		<td>
 
-<table border="0" >
-<tr>
-<td>User Email</td>
-<td>
+		<?php echo form_input(array(
+				'name' => 'email',
+				'id' => 'email',
+				'value' => set_value('email', ''),
+				'maxlength' => '100',
+				'size' => '50',
+				'style' => 'width:100%'
+			)
+		); ?>
 
-<?php echo form_input(array(
-		'name' => 'email',
-		'id' => 'email',
-		'value' => set_value('email', ''),
-		'maxlength' => '100',
-		'size' => '50',
-		'style' => 'width:100%'
-	)
-); ?>
+		</td>
+		</tr>
+		<tr>
+		<td>Password</td>
+		<td>
 
-</td>
-</tr>
-<tr>
-<td>Password</td>
-<td>
+			<?php echo form_password(array(
+				'name' => 'password',
+				'id' => 'password',
+				'value' => set_value('password', ''),
+				'maxlength' => '100',
+				'size' => '50',
+				'style' => 'width:100%'
+				)
+			); ?>
 
-	<?php echo form_password(array(
-		'name' => 'password',
-		'id' => 'password',
-		'value' => set_value('password', ''),
-		'maxlength' => '100',
-		'size' => '50',
-		'style' => 'width:100%'
-		)
-	); ?>
+		</td>
+		</tr>
+	</table>
 
-</td>
-</tr>
-</table>
+	<?php echo form_submit('submit', 'Submit'); ?>
 
-<?php echo form_submit('submit', 'Submit'); ?>
+	<p>or <?php echo anchor('signin', 'cancel'); ?></p>
 
-<p>or <?php echo anchor('signin', 'cancel'); ?></p>
+	<?php echo form_close(); ?>
 
-<?php echo form_close(); ?>
+</div>
 
 </div>
