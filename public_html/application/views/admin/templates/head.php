@@ -3,10 +3,6 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		
-		<style type="text/css">
-
-		</style>
-
 		<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/reset.css'); ?>" />
 		<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/menubar.css'); ?>" />
@@ -27,7 +23,7 @@
 
 				<a href="#" id="trigger" class="menu-trigger icon-fa" style="float: left;">&#xf013;</a>
 
-				<a title="Home" class="qactbtn icon-fa" data-loc="<?php echo base_url();?>index.php/admin/dashboard"><span> | </span>&#xf015;</a>
+				<a href="<?php echo base_url();?>index.php/admin" title="Home" class="icon-fa"><span> | </span>&#xf015;</a>
 
 				<a title="New Issue" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/create_issue"><span> | </span>&#xf055;</a>
 

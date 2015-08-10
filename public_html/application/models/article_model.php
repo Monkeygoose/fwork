@@ -51,7 +51,11 @@ class Article_model extends CI_Model {
 
 		$this->load->helper('url');
 
-		$slug = url_title($this->input->post('title'), 'dash', TRUE);
+		if ($this->input->post('issue') == "blog") {
+			$slug = time()."-".$this->input->post('cat');
+		} else {
+			$slug = url_title($this->input->post('title'), 'dash', TRUE);
+		};
 
 		$data = array(
 			'title' => $this->input->post('title'),
@@ -68,15 +72,15 @@ class Article_model extends CI_Model {
 
 	}
 
-	public function update_article($id, $title, $author, $date, $issue, $cat, $text) {
+	public function update_article($id) {
 
 	    $data = array(
-	        'title' => $title,
-			'author' => $author,
-			'date' => $date,
-			'issue' => $issue,
-			'cat' => $cat,
-	        'text' => $text
+	        'title' => $this->input->post('title'),
+			'author' => $this->input->post('author'),
+			'date' => date('Y-m-d'),
+			'issue' => $this->input->post('issue'),
+			'cat' => $this->input->post('cat'),
+	        'text' => $this->input->post('text')
 	    );
 
 	    $this->db->where('id', $id);

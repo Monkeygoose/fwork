@@ -7,6 +7,8 @@
 
 <?php endif; ?>
 
+<div class="formitems">
+
 	<?php echo form_input(array(
 		'name' => 'first_name', 
 		'id' => 'first_name',
@@ -67,3 +69,5 @@
 or <?php echo anchor('admin', 'cancel'); ?>
 
 <?php echo form_close(); ?>
+
+</div>

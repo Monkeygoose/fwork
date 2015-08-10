@@ -92,8 +92,8 @@
 
 					<ul>
 
-						<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/blog/create_article">Create Blog Article</a></li>
-						<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/blog/view_articles">View Blog Articles</a></li>
+						<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/article/create_post">Create Blog Article</a></li>
+						<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/article/view_posts">View Blog Articles</a></li>
 
 						<li></li>
 						<li></li>

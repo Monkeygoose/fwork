@@ -16,6 +16,8 @@ class reader extends CI_Controller {
 
 		$data['query'] = $this->article_model->get_article($slug);
 
+		$this->load->view('magazine/article_header',$data);		
+
 		$this->load->view('magazine/view_article',$data);
 
 	}
