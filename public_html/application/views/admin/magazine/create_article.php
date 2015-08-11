@@ -1,14 +1,8 @@
-<link rel="stylesheet" type="text/css" href="<?php echo site_url('resources/css/uploadstyle.css'); ?>" />
-
-<div class="col-2-3">
-
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('article/create_article'); ?>
 
 	<div class="formitems">
-
-		<input type="hidden" name="temp_folder" value="<?php echo $temp_folder;?>">
 
 		<input type="text" name="title" placeholder="Title"><br />
 
@@ -45,5 +39,3 @@
 	</div>
 
 </form>
-
-</div>
