@@ -6,10 +6,19 @@ class article extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->helper('security');
+		//$this->load->helper('security');
 		$this->load->model('issue_model');
 		$this->load->model('article_model');
 		$this->load->database();
+
+		$this->headdata = array(
+			'title' => 'Dashboard',
+			'keywords' => '',
+			'description' => '',
+			'user_name' => $this->session->userdata('user_name'),
+			'info' => $this->session->flashdata('info')
+			);
+
 	}
 
 	public function index() {
@@ -24,7 +33,11 @@ class article extends MY_Controller {
 
 	public function create_article(){
 
+		$this->load->view('admin/templates/head.php', $this->headdata);
+
         $data['query'] = $this->issue_model->get_issue();
+
+        $data['temp_folder'] = "temp-".time()."-".$this->session->userdata('user_name');
 
         $this->load->library('form_validation');
 
@@ -35,7 +48,14 @@ class article extends MY_Controller {
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/create_article',$data);
+
+        	$this->load->view('admin/file/upload_form.php',$data);
+
             $this->load->view('admin/templates/wysiwyg');
+
+        	$this->load->view('admin/file/scripts.php');
+
+			$this->load->view('admin/templates/footer.php');
 
         } else {
 

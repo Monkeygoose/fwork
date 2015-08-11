@@ -18,12 +18,14 @@ class admin extends MY_Controller {
 			'info' => $this->session->flashdata('info')
 			);
 
-		$this->navdata = array();
+		//$this->navdata = array();
 
 	}
 
 	public function index() {		
 		$this->load->view('admin/templates/head.php', $this->headdata);
+
+		$this->load->view('admin/home');
 
 		$this->load->view('admin/templates/footer.php');
 
@@ -31,36 +33,42 @@ class admin extends MY_Controller {
 
 	public function dashboard(){
 
-		$this->load->view('admin/home');
+		$this->load->view('admin/home');		
 
 	}
 
-	public function upload($issue = NULL){
-		
+	public function upload(){
+
+        $this->load->library('form_validation');
+
 		//may need to be absolute path (base_url())
-		$folder = "issue-".$issue."/";
+		$folder = "assets/uploads/articles/".$_POST['directory']."/";
+
+		if (!file_exists($folder)) {
+		    mkdir($folder, 0777, true);
+		};
 
 		// NEEDS SCRUTINY
 
-	// 	$allowed = array('png', 'jpg', 'gif','zip');
+		$allowed = array('png', 'jpg', 'gif','zip');
 
-	// 	if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
+		if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
-	// 		$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
+			$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 
-	// 		if(!in_array(strtolower($extension), $allowed)){
-	// 			echo '{"status":"error"}';
-	// 			exit;
-	// 		}
+			if(!in_array(strtolower($extension), $allowed)){
+				echo '{"status":"success"}';
+				exit;
+			}
 
-	// 		if(move_uploaded_file($_FILES['upl']['tmp_name'], 'uploads/'.$folder.$_FILES['upl']['name'])){
-	// 			echo '{"status":"success"}';
-	// 			exit;
-	// 		}
-	// 	}
+			if(move_uploaded_file($_FILES['upl']['tmp_name'], $folder.$_FILES['upl']['name'])){
+				echo '{"status":"success"}';
+				exit;
+			}
+		}
 
-	// 	echo '{"status":"error"}';
-	// 	exit;
+		echo '{"status":"success"}';
+		exit;
 
 	}
 

@@ -29,7 +29,7 @@
 
 				<a title="View Issues" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/issue/view_issues">&#xf02d;<span> | </span></a>
 
-				<a title="New Article" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/create_article">&#xf055;</a>
+				<a title="New Article" class="icon-fa" style="float: left;" href="<?php echo base_url();?>index.php/article/create_article">&#xf055;</a>
 
 				<a title="View Articles" class="qactbtn icon-fa" style="float: left;" data-loc="<?php echo base_url();?>index.php/article/view_articles">&#xf1ea;<span> | </span></a>
 
@@ -48,4 +48,3 @@
 				<div class="scroller"><!-- this is for emulating position fixed of the nav -->
 					<div class="scroller-inner">
 						<article id="content" class="content">
-							<?php $this->load->view('admin/home');?>
