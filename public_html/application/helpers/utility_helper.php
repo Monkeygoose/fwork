@@ -44,4 +44,40 @@ function category($selected){
 
 }
 
+function make_directory($issue, $slug){
+
+	//make issue dir first
+	$issuetarget = "assets/uploads/issue-".$issue."/";
+	if (!file_exists($issuetarget)) {
+	    mkdir($issuetarget, 0777, true);
+	};
+
+	//make article dir second
+	$articletarget = "assets/uploads/issue-".$issue."/".$slug."/";
+	if (!file_exists($articletarget)) {
+	    mkdir($articletarget, 0777, true);
+	};
+
+}
+
+function move_files($source, $destination){
+	// Get array of all source files
+	$files = scandir("source");
+	// Identify directories
+	$source = "source/";
+	$destination = "destination/";
+	// Cycle through all source files
+	foreach ($files as $file) {
+	  if (in_array($file, array(".",".."))) continue;
+	  // If we copied this successfully, mark it for deletion
+	  if (copy($source.$file, $destination.$file)) {
+	    $delete[] = $source.$file;
+	  }
+	}
+	// Delete all successfully-copied files
+	foreach ($delete as $file) {
+	  unlink($file);
+	}	
+}
+
 ?>

@@ -63,7 +63,7 @@
 
 									<ul>
 
-										<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/article/create_article">Create Article</a></li>
+										<li><a class="" href="<?php echo base_url();?>index.php/article/create_article">Create Article</a></li>
 										<li><a class="actbtn" data-loc="<?php echo base_url();?>index.php/article/view_articles">View Articles</a></li>
 
 									</ul>

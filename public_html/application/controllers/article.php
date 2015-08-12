@@ -10,6 +10,38 @@ class article extends MY_Controller {
 		$this->load->model('issue_model');
 		$this->load->model('article_model');
 		$this->load->database();
+
+		$this->headdata = array(
+			'title' => 'Articles',
+			'keywords' => '',
+			'description' => '',
+			'user_name' => $this->session->userdata('user_name'),
+			'info' => $this->session->flashdata('info'),
+			'gfonts' => array(
+				'googlefonts' => 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300'
+				),
+			'styles' => array(
+				'reset' => site_url('resources/css/reset.css'),
+				'menubar' => site_url('resources/css/menubar.css'),
+				'admin style sheet' => site_url('resources/css/admin.css'),
+				'spinner style sheet' => site_url('resources/css/spinner.css'),
+				'dropzone css' => site_url('resources/css/dropzone.css')
+				),
+			'scripts' => array(
+				'modernizr'=> site_url('resources/js/modernizr.custom.js'),
+				'jquery' => site_url('resources/js/jquery.js'),
+				'dropzone' => site_url('resources/js/dropzone.js')
+				)
+			);
+
+		$this->footdata = array(
+			'scripts' => array(
+				'classie'=> site_url('resources/js/classie.js'),
+				'Multi Level Menu' => site_url('resources/js/mlpushmenu.js'),
+				'Main Script' => site_url('resources/js/main.js')
+				)			
+			);
+
 	}
 
 	public function index() {
@@ -24,22 +56,35 @@ class article extends MY_Controller {
 
 	public function create_article(){
 
+		$data['temp_folder'] = "temp-".time()."-".$this->session->userdata('user_name');
+
         $data['query'] = $this->issue_model->get_issue();
 
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('issue', 'Issue Number', 'required');
 
-
+		$this->load->view('admin/templates/head.php', $this->headdata);
 
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/create_article',$data);
+
+            $this->load->view('admin/upload/upload_form',$data);
+
             $this->load->view('admin/templates/wysiwyg');
+
+            $this->load->view('admin/templates/footer.php', $this->footdata);
 
         } else {
 
             $this->article_model->set_article();
+
+            $slug = url_title($_POST['title'], 'dash', TRUE);
+
+            make_directory($_POST['issue'],$slug);
+
+            rename("/assets/uploads/".$data['temp_folder'], "/assets/uploads/issue-".$_POST['issue']."/".$slug);
 
 			$result = "Article Created";
 

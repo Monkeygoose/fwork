@@ -141,3 +141,71 @@ td input {
   text-align: center;
   margin: 0;
 }
+
+/* COLUMN CODE */
+[class*='col-'] {
+	float: left;
+}
+
+.col-2-3 {
+	width: 66.66%;
+}
+
+.col-1-3 {
+	width: 33.33%;
+}
+
+.col-1-6 {
+	width: 16.66%;
+}
+
+.col-1-2 {
+	width: 50%;
+}
+
+.col-1-4 {
+	width: 25%;
+}
+
+.col-3-4 {
+	width: 75%;
+}
+
+.col-1-1 {
+	width: 100%;
+}
+
+.grid:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.clearfix {
+	clear: both;
+}
+
+p {
+	-ms-word-break: break-all;
+	word-break: break-all;
+
+     /* Non standard for webkit */
+     word-break: break-word;
+
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
+}
+
+*, *:after, *:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+[class*='col-'] {
+	padding-right: 0px;
+}
+[class*='col-']:last-of-type {
+	padding-right: 0;
+}

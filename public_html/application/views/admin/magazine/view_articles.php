@@ -38,4 +38,7 @@ endforeach;
 endif; 
 ?>
 
-<script src="<?php echo site_url('resources/js/main.js'); ?>"></script>
+<script>
+    var url = "<?php echo site_url('resources/js/main.js'); ?>";
+    $.getScript(url);
+</script>
