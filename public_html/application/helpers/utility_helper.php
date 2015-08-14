@@ -62,10 +62,9 @@ function make_directory($issue, $slug){
 
 function move_files($source, $destination){
 	// Get array of all source files
-	$files = scandir("source");
-	// Identify directories
-	$source = "source/";
-	$destination = "destination/";
+	$files = scandir($source);
+
+	//dd($files);
 	// Cycle through all source files
 	foreach ($files as $file) {
 	  if (in_array($file, array(".",".."))) continue;
@@ -74,10 +73,22 @@ function move_files($source, $destination){
 	    $delete[] = $source.$file;
 	  }
 	}
+
 	// Delete all successfully-copied files
+	//dd($delete);
 	foreach ($delete as $file) {
 	  unlink($file);
-	}	
+	}
+
+	//rmdir($source);	
+}
+
+function update_image_links($sourcefolder, $destinationfolder, $text){
+
+	$text = str_replace($sourcefolder, $destinationfolder, $text);
+
+	return $text;
+
 }
 
 ?>

@@ -78,13 +78,19 @@ class article extends MY_Controller {
 
         } else {
 
-            $this->article_model->set_article();
-
             $slug = url_title($_POST['title'], 'dash', TRUE);
 
             make_directory($_POST['issue'],$slug);
 
-            rename("/assets/uploads/".$data['temp_folder'], "/assets/uploads/issue-".$_POST['issue']."/".$slug);
+            $source = "assets/uploads/".$_POST['temp_folder']."/";
+
+            $destination = "assets/uploads/issue-".$_POST['issue']."/".$slug."/";
+
+			move_files($source, $destination);
+
+			$_POST['text'] = update_image_links("/".$source, "/".$destination, $_POST['text']);
+
+            $this->article_model->set_article();
 
 			$result = "Article Created";
 
