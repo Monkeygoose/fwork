@@ -29,7 +29,21 @@ class Resource extends CI_Controller {
         array_shift($segments);   // remove the second
         $content['script'] = $segments[0] . ".php";  //e.g. main.js.php
 
-        $content['data'] = array(); 
+        $content['data'] = array(
+                'siteprices' => array(
+                    'banner' => '8',
+                    'footer' => '5',
+                    'events' => '5',
+                    'skyscraper' => '7'
+                ),
+                'magprices' => array(
+                    'sponsor' => '6000',
+                    'fullpage' => '450',
+                    'halfpage' => '300',
+                    'articleblock' => '200',
+                    'banner' => '250'
+                )
+            );
 
         $this->load->view('resources/js.php', $content);
 

@@ -299,7 +299,8 @@
 }
 
 .imgdz .dz-preview.dz-image-preview {
-    background: #363F56; 
+    background: #EEE;
+    border:1px dashed #aaa;
 }
 
 .imgdz .dz-preview.dz-image-preview .dz-details {

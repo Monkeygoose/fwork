@@ -1,0 +1,89 @@
+Client (editable/deletable)
+
+Name => business name
+
+Contact Name
+
+Contact number
+
+Contact Email Address
+
+Contact Address (+postcode)
+
+long (get from geoloc)
+
+lat (get from geoloc)
+
+
+*******************************************
+
+Advert (renewable)
+
+Position:
+location - site / magazine
+section - page / issue
+Page - NA / article
+Type - banner, footer, events 		block, skyscraper / 		  full page, half page,  	   article block, banner
+
+client name (dropdown) => pull from a directory
+
+click count
+view count
+link
+image (absolute path)
+text
+
+start date
+end date
+
+********************************************
+
+Report
+
+==========================================================
+|  Advert ID  |    Date   |  Click Count  |  View Count  | 
+==========================================================
+|  int(255)   | mm/dd/yy  |  int(255)     |  int(255)    |
+----------------------------------------------------------
+
+
+********************************************
+
+Venue (editable)
+
+
+type of events (checklist(art/music/poetry/design)
+
+Address (+post code)
+
+Phone number
+
+long (get from geoloc)
+
+lat (get from geoloc)
+
+
+DB only
+
+Approved bool 0/1
+
+********************************************
+
+Event
+
+Name
+
+Start date
+
+Start Time
+
+Admission
+
+Location (drop down from Venue)
+
+Details
+
+
+DB only
+
+Approved bool 0/1

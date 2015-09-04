@@ -11,36 +11,7 @@ class article extends MY_Controller {
 		$this->load->model('article_model');
 		$this->load->database();
 
-		$this->headdata = array(
-			'title' => 'Articles',
-			'keywords' => '',
-			'description' => '',
-			'user_name' => $this->session->userdata('user_name'),
-			'info' => $this->session->flashdata('info'),
-			'gfonts' => array(
-				'googlefonts' => 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300'
-				),
-			'styles' => array(
-				'reset' => site_url('resources/css/reset.css'),
-				'menubar' => site_url('resources/css/menubar.css'),
-				'admin style sheet' => site_url('resources/css/admin.css'),
-				'spinner style sheet' => site_url('resources/css/spinner.css'),
-				'dropzone css' => site_url('resources/css/dropzone.css')
-				),
-			'scripts' => array(
-				'modernizr'=> site_url('resources/js/modernizr.custom.js'),
-				'jquery' => site_url('resources/js/jquery.js'),
-				'dropzone' => site_url('resources/js/dropzone.js')
-				)
-			);
-
-		$this->footdata = array(
-			'scripts' => array(
-				'classie'=> site_url('resources/js/classie.js'),
-				'Multi Level Menu' => site_url('resources/js/mlpushmenu.js'),
-				'Main Script' => site_url('resources/js/main.js')
-				)			
-			);
+		$this->load->view('admin/templates/head.php', $this->headdata);
 
 	}
 
@@ -49,9 +20,12 @@ class article extends MY_Controller {
 	}
 
 	public function view_articles(){
-	  $data['query'] = $this->article_model->get_article();
+		
+		$data['query'] = $this->article_model->get_article();
 
-	  $this->load->view('admin/magazine/view_articles', $data);
+		$this->load->view('admin/magazine/view_articles', $data);
+
+		$this->load->view('admin/templates/footer.php', $this->footdata);
 	}
 
 	public function create_article(){
@@ -63,8 +37,6 @@ class article extends MY_Controller {
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('issue', 'Issue Number', 'required');
-
-		$this->load->view('admin/templates/head.php', $this->headdata);
 
         if ($this->form_validation->run() === FALSE) {
 
@@ -108,6 +80,8 @@ class article extends MY_Controller {
 
 		$data['query'] = $this->article_model->get_article($slug);
 
+		$data['temp_folder'] = "issue-".$data['query']['issue']."/".$slug;
+
 		$this->load->library('form_validation');
 
         $this->form_validation->set_rules('issue', 'Issue Number', 'required');
@@ -115,9 +89,16 @@ class article extends MY_Controller {
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/edit_article',$data);
+
+            $this->load->view('admin/upload/upload_form',$data);            
+
             $this->load->view('admin/templates/wysiwyg');
 
+            $this->load->view('admin/templates/footer.php', $this->footdata);
+
         } else {
+
+        	make_directory($_POST['issue'],$slug);
 
             $this->article_model->update_article($data['query']['id']);
 
@@ -132,13 +113,18 @@ class article extends MY_Controller {
 	}
 
 	public function view_posts(){
-	  $data['query'] = $this->article_model->get_article();
+		
+		$data['query'] = $this->article_model->get_article();
 
-	  $this->load->view('admin/magazine/view_posts', $data);
+		$this->load->view('admin/magazine/view_posts', $data);
+
+    	$this->load->view('admin/templates/footer.php', $this->footdata);
 	  
 	}
 
 	public function create_post(){
+
+		$data['temp_folder'] = "temp-".time()."-".$this->session->userdata('user_name');
 
         $this->load->library('form_validation');
 
@@ -146,14 +132,31 @@ class article extends MY_Controller {
 
         if ($this->form_validation->run() === FALSE) {
 
-            $this->load->view('admin/magazine/create_post');
+            $this->load->view('admin/magazine/create_post',$data);
+
+            $this->load->view('admin/upload/upload_form',$data);
+
             $this->load->view('admin/templates/wysiwyg');
+
+            $this->load->view('admin/templates/footer.php', $this->footdata);
 
         } else {
 
+            $slug = "blog-".url_title($_POST['title'], 'dash', TRUE);
+
+            make_directory("blog",$slug);
+
+            $source = "assets/uploads/".$_POST['temp_folder']."/";
+
+            $destination = "assets/uploads/blog/".$slug."/";
+
+			move_files($source, $destination);
+
+			$_POST['text'] = update_image_links("/".$source, "/".$destination, $_POST['text']);
+
             $this->article_model->set_article();
 
-			$result = "Post Created";
+			$result = "Blog Article Created";
 
             $this->session->set_flashdata('info',$result);
 						
@@ -166,6 +169,8 @@ class article extends MY_Controller {
 
 		$data['query'] = $this->article_model->get_article($slug);
 
+		$data['temp_folder'] = "blog/".$slug;
+
 		$this->load->library('form_validation');
 
         $this->form_validation->set_rules('issue', 'Issue Number', 'required');
@@ -173,9 +178,16 @@ class article extends MY_Controller {
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/edit_post',$data);
+
+            $this->load->view('admin/upload/upload_form',$data);            
+
             $this->load->view('admin/templates/wysiwyg');
 
+            $this->load->view('admin/templates/footer.php', $this->footdata);
+
         } else {
+
+        	//make_directory("blog" ,$slug);
 
             $this->article_model->update_article($data['query']['id']);
 
@@ -189,9 +201,33 @@ class article extends MY_Controller {
 
 	}
 
-	public function delete_article($id = NULL){
+	public function delete_article(){
 
-            $this->article_model->delete_article($id);
+			$getvars = array();
+
+			$data = array();
+
+	        foreach ($this->segments as $value) {
+	        	$getvars[] = $value;
+	        };
+
+	        $data['id'] = $getvars['0'];
+
+	        $data['issue'] = $getvars['1'];
+
+	        $data['slug'] = $getvars['2'];
+
+	        if ($data['issue'] == "0") {
+	        	$data['issue'] = "blog";
+	        } else {
+	        	$data['issue'] = "issue-".$data['issue'];
+	        };
+
+            $source = "assets/uploads/".$data['issue']."/".$data['slug']."/";
+
+            delete_files($source);
+
+            $this->article_model->delete_article($data['id']);
 
             $result = "Article Deleted";
 

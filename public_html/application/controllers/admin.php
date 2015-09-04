@@ -10,39 +10,11 @@ class admin extends MY_Controller {
 
 		if (!$this->session->flashdata('info')) { $this->session->set_flashdata('info',''); };
 
-		$this->headdata = array(
-			'title' => 'Dashboard',
-			'keywords' => '',
-			'description' => '',
-			'user_name' => $this->session->userdata('user_name'),
-			'info' => $this->session->flashdata('info'),
-			'gfonts' => array(
-				'googlefonts' => 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,400,700,300'
-				),
-			'styles' => array(
-				'reset' => site_url('resources/css/reset.css'),
-				'menubar' => site_url('resources/css/menubar.css'),
-				'admin style sheet' => site_url('resources/css/admin.css'),
-				'spinner style sheet' => site_url('resources/css/spinner.css')
-				),
-			'scripts' => array(
-				'modernizr'=> site_url('resources/js/modernizr.custom.js'),
-				'jquery' => site_url('resources/js/jquery.js')
-				)
-			);
-
-		$this->footdata = array(
-			'scripts' => array(
-				'classie'=> site_url('resources/js/classie.js'),
-				'Multi Level Menu' => site_url('resources/js/mlpushmenu.js'),
-				'Main Script' => site_url('resources/js/main.js')
-				)			
-			);
+		$this->load->view('admin/templates/head.php', $this->headdata);
 
 	}
 
-	public function index() {		
-		$this->load->view('admin/templates/head.php', $this->headdata);
+	public function index() {
 
 		$this->load->view('admin/home');
 
@@ -50,13 +22,19 @@ class admin extends MY_Controller {
 
 	}
 
-	public function dashboard(){
+	public function upload(){
 
-		$this->load->view('admin/home');
+        $segments = $this->uri->segment_array();
+        array_shift($segments);   // remove the first
+        array_shift($segments);   // remove the second
 
-	}
+        $dir = "";
 
-	public function upload($dir){
+        foreach ($segments as $value) {
+        	$dir .= $value."/";
+        };
+
+		$dir = substr($dir, 0, -1);
 
 		if (!empty($_FILES)) {
 

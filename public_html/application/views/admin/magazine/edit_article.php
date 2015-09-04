@@ -1,52 +1,56 @@
-<?php echo validation_errors(); ?>
+<div class="col-2-3">
 
-<?php echo form_open('article/edit_article/'.$query['slug']); ?>
+   <?php echo validation_errors(); ?>
 
-   <div class="formitems">
+   <?php echo form_open('article/edit_article/'.$query['slug']); ?>
 
-      <input type="text" name="title" placeholder="Title" value="<?php echo $query['title'];?>"><br />
+      <div class="formitems">
 
-      <input type="text" name="author" placeholder="Author" value="<?php echo $query['author'];?>"><br />
+         <input type="text" name="title" placeholder="Title" value="<?php echo $query['title'];?>"><br />
 
-      <?php 
-         $selected = category($query['cat']); 
-      ?>
-      <select name="cat">
-         <option disabled>Category</option>
-         <option value="art" <?php echo $selected['art'];?> >Art</option>
-         <option value="music" <?php echo $selected['music'];?>>Music</option>
-         <option value="poetry" <?php echo $selected['poetry'];?>>Poetry</option>
-         <option value="design" <?php echo $selected['design'];?>>Design</option>
+         <input type="text" name="author" placeholder="Author" value="<?php echo $query['author'];?>"><br />
 
-      </select><br />
-
-      <select name="issue">
-         <option disabled selected>Issue</option>
          <?php 
-
-         foreach ($issue->result() as $row) : 
-
-         if ($row->issue_num == $query['issue']) {
-            $selected = "selected";
-         } else {
-            $selected = "";
-         };
-
+            $selected = category($query['cat']); 
          ?>
-            <option value="<?php echo $row->issue_num;?>" <?php echo $selected; ?>><?php echo $row->issue_num; ?></option>
-         <?php 
-         endforeach; 
-         ?>
-      </select><br />
+         <select name="cat">
+            <option disabled>Category</option>
+            <option value="art" <?php echo $selected['art'];?> >Art</option>
+            <option value="music" <?php echo $selected['music'];?>>Music</option>
+            <option value="poetry" <?php echo $selected['poetry'];?>>Poetry</option>
+            <option value="design" <?php echo $selected['design'];?>>Design</option>
 
-   </div>
+         </select><br />
 
-   <textarea name="text" class="tinymce"><?php echo $query['text'];?></textarea><br />
+         <select name="issue">
+            <option disabled selected>Issue</option>
+            <?php 
 
-   <div class="formitems">
+            foreach ($issue->result() as $row) : 
 
-      <input type="submit" name="submit" value="Submit Changes" />
+            if ($row->issue_num == $query['issue']) {
+               $selected = "selected";
+            } else {
+               $selected = "";
+            };
 
-   </div>
+            ?>
+               <option value="<?php echo $row->issue_num;?>" <?php echo $selected; ?>><?php echo $row->issue_num; ?></option>
+            <?php 
+            endforeach; 
+            ?>
+         </select><br />
 
-</form>
+      </div>
+
+      <textarea name="text" class="tinymce"><?php echo $query['text'];?></textarea><br />
+
+      <div class="formitems">
+
+         <input type="submit" name="submit" value="Submit Changes" />
+
+      </div>
+
+   </form>
+
+</div>

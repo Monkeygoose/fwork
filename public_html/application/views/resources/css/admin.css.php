@@ -19,6 +19,10 @@ body{
     font-style: normal;  
 }
 
+.hidden {
+	display: none;
+}
+
 .content {
 	padding: 10px 20px;
 }
@@ -114,6 +118,45 @@ a{
 }
 
 .formitems p {
+	font-size: 16px;
+}
+
+#impressions {
+	background: transparent;
+	border: 0;
+	text-align: center;
+}
+
+.adverttext {
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 5px;
+	font-size: 16px;
+	height: 90px;
+}
+
+.ui-slider {
+	margin-bottom: 10px;
+}
+
+.ui-slider-handle {
+	background: #F6803D!important;
+}
+
+#report {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 200px;
+	height: 500px;
+	background: #eee;
+}
+
+#magadprice {
+	width: 100%;
+	color: #F6803D;
+	text-align: center;
+	padding: 5px;
 	font-size: 16px;
 }
 

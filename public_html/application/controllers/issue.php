@@ -6,9 +6,11 @@ class issue extends MY_Controller {
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->helper('url');
-		$this->load->helper('security');
+		//$this->load->helper('security');
 		$this->load->model('issue_model');
 		$this->load->database();
+
+        $this->load->view('admin/templates/head.php', $this->headdata);
 	}
 
 	public function index() {
@@ -22,6 +24,8 @@ class issue extends MY_Controller {
 
             $this->load->view('admin/magazine/view_issues', $data);
 
+            $this->load->view('admin/templates/footer.php', $this->footdata);
+
     }
 
     public function create_issue() {
@@ -34,6 +38,8 @@ class issue extends MY_Controller {
         if ($this->form_validation->run() === FALSE) {
 
             $this->load->view('admin/magazine/create_issue');
+
+            $this->load->view('admin/templates/footer.php', $this->footdata);
 
         } else {
 

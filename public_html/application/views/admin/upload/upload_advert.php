@@ -4,7 +4,7 @@
 
 	$attributes = array('class' => 'imgdz', 'id' => 'dzone');
 
-	echo form_open_multipart("admin/upload/$temp_folder", $attributes); 
+	echo form_open_multipart("advert/upload/$temp_folder", $attributes); 
 
 	?>
 
@@ -36,8 +36,13 @@
 new Dropzone("#dzone", {
 
     init: function() {
+    	this.on("addedfile", function() {
+	      if (this.files[1]!=null){
+	        this.removeFile(this.files[0]);
+	      }
+	    });
         this.on('success', function(file) {
-            var newname = "/assets/uploads/<?php echo $temp_folder;?>/"+file.name; // this is my function
+            var newname = "/assets/uploads/<?php echo $temp_folder;?>/advert.jpg"; // this is my function
             // changing src of preview element
             file.previewElement.querySelector("img").src = newname;
         });

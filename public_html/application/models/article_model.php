@@ -51,8 +51,8 @@ class Article_model extends CI_Model {
 
 		$this->load->helper('url');
 
-		if ($this->input->post('issue') == "blog") {
-			$slug = time()."-".$this->input->post('cat');
+		if ($this->input->post('issue') == "0") {
+			$slug = "blog-".url_title($this->input->post('title'), 'dash', TRUE);
 		} else {
 			$slug = url_title($this->input->post('title'), 'dash', TRUE);
 		};
